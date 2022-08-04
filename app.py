@@ -44,7 +44,8 @@ square_size = SQUARE_SIZE
 
 def split_chessboard_into_64_images(image):
     
-    img_read = cv2.imread(image,cv2.IMREAD_GRAYSCALE)
+    #img_read = cv2.imread(image,cv2.IMREAD_GRAYSCALE)
+    img_read = np.array(image)
     img_read = transform.resize(img_read, (downsample_size, downsample_size), mode='constant')
     tiles = view_as_blocks(img_read, block_shape=(square_size, square_size))
     
@@ -67,7 +68,7 @@ def upload_predict(upload_image, model):
         #image = ImageOps.fit(upload_image, size, Image.ANTIALIAS)
         #image = np.asarray(image)
         
-        test_input_image = split_chessboard_into_64_images(upload_image.name)
+        test_input_image = split_chessboard_into_64_images(upload_image)
         test_input_image = np.array(test_input_image)
         test_input_image = test_input_image.reshape(test_input_image.shape + (1,))
         pred = model.predict(test_input_image)
@@ -79,7 +80,8 @@ if file is None:
 else:
     image = Image.open(file)
     st.image(image, use_column_width=True)
-    pred = upload_predict(file, model)
+    image_gray = ImageOps.grayscale(og_image)
+    pred = upload_predict(image_gray, model)
     image_label = str(fen_from_onehot(pred[0]))
     
     st.write("The predicted FEN:",image_label)
