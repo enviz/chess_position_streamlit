@@ -13,4 +13,5 @@ Input : Chess board image with pawns and its positions
 
 Output : Forsyth–Edwards Notation (FEN)
 
-[streamlit-app-2022-08-04-14-08-57.webm](https://user-images.githubusercontent.com/48526315/182852216-7d06e15d-8275-4ad4-bf51-c3df5edc4b4b.webm)
+![streamlit-app-2022-08-04-14-08-57](https://user-images.githubusercontent.com/48526315/182853281-0a6a31ac-05fd-4416-9292-da8e1cd94992.gif)
+
