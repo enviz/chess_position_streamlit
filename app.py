@@ -80,7 +80,7 @@ if file is None:
 else:
     image = Image.open(file)
     st.image(image, use_column_width=True)
-    image_gray = ImageOps.grayscale(og_image)
+    image_gray = ImageOps.grayscale(image)
     pred = upload_predict(image_gray, model)
     image_label = str(fen_from_onehot(pred[0]))
     
